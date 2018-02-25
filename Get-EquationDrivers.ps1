@@ -5,7 +5,7 @@ Invoke-WebRequest -Uri $url -OutFile $tmpfile
 $drvList = Import-Csv -Path $tmpfile -Header Name, Description
 
 Write-Host "Getting Drivers, this may take a while..."
-$liveDrvList = Get-WindowsDriver -Online | Select-Object -Property Driver, OriginalFileName, ClassName, ProviderName, Date
+$liveDrvList = Get-WindowsDriver -Online -All | Select-Object -Property Driver, OriginalFileName, ClassName, ProviderName, Date
 
 foreach ($drv in $liveDrvList) {
     $drvName = Split-Path -Leaf $drv.OriginalFileName
